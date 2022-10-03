@@ -3,7 +3,7 @@ var generateBtn = document.querySelector("#generate");
 var CapitalLetter = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ";
 var LowerCase = "abcdefghijklmnñopqrstuvwxyz";
 var numbers = "0123456789";
-var specialChar = "!#$%& '()* +,-./: ;<=>?@[\]^ _`{|}~";
+var specialChar = "!#$%& '()*+,-./:;<=>?@[\]^_`{|}~";
 var numCapitalLetter = 0;
 var numLowerCase = 0;
 var amountNumbers = 0;
@@ -12,6 +12,16 @@ var stringTotal = "";
 var numChar = 0;
 var leter = "";
 
+function suggestedPassword() {
+  var password = "";
+  var indice;
+  stringTotal = CapitalLetter + LowerCase + numbers + specialChar;
+  for (var i = 0; i < numChar; i++) {
+    indice = Math.floor(Math.random() * stringTotal.length);
+    password += stringTotal.charAt(indice);
+  }
+  return (password);
+}
 
 function refill() {
   var password = "";
@@ -70,14 +80,23 @@ function generatePassword() {
   var typeCharacter = 0;
   alert("NOTA: Para generar una contraseña más segura es recomendable contenga como mínimo una letra mayúscula, una minúscula, un número y caracter especial");
   numChar = parseInt(prompt("¿Cuántos caracteres deseas que contenga la contraseña?  Minimo 8 y máximo 128 "));
+  if (Number(numChar) != numChar) {
+    alert("Número invalido !!! ");
+    return (null); 
+    }
   if (numChar < 8 || numChar > 128) {
-    alert('elige numero de 8 a 128!!!')
+    alert('Elige número de 8 a 128 !!!');
     return (null);
   }
+  
   var placeAvailable = numChar;
   var confirmaMay = confirm("¿Deseas que contenga mayúsculas? ");
   if (confirmaMay) {
     numCapitalLetter = parseInt(prompt("¿Cuántos mayúsculas deseas que contenga la contraseña? Tienes " + placeAvailable + " espacios disponibles"));
+    if (Number(numCapitalLetter) != numCapitalLetter) {
+      alert("Número invalido !!! ");
+      return (null);
+    }
     sumChar = sumChar + numCapitalLetter;
     if (sumChar > numChar) {
       alert("El número de caracteres excede los " + numChar + " caracteres establecidos inicialmente.");
@@ -86,11 +105,19 @@ function generatePassword() {
       typeCharacter = 1;
       selectElements(typeCharacter);
       placeAvailable = numChar - sumChar;
+      if (placeAvailable === 0) {
+        stringTotal = refill();
+        return (stringTotal);
+      }
     }
-  }
+  } 
   var confirmaMin = confirm("¿Deseas que contenga minúsculas? ");
   if (confirmaMin) {
     numLowerCase = parseInt(prompt("¿Cuántos minúsculas deseas que contenga la contraseña? Tienes " + placeAvailable + " espacios disponibles"));
+    if (Number(numLowerCase) != numLowerCase) {
+      alert("Número invalido !!! ");
+      return (null);
+    }
     sumChar = sumChar + numLowerCase;
     if (sumChar > numChar) {
       alert("El número de caracteres excede los " + numChar + " caracteres establecidos inicialmente.");
@@ -99,11 +126,19 @@ function generatePassword() {
       typeCharacter = 2;
       selectElements(typeCharacter);
       placeAvailable = numChar - sumChar;
+      if (placeAvailable === 0) {
+        stringTotal = refill();
+        return (stringTotal);
+      }
     }
   }
   var confirmaNum = confirm("¿Deseas que contenga numeros? ");
   if (confirmaNum) {
     amountNumbers = parseInt(prompt("¿Cuántos numeros deseas que contenga la contraseña? Tienes " + placeAvailable + " espacios disponibles"));
+    if (Number(amountNumbers) != amountNumbers) {
+      alert("Número invalido !!! ");
+      return (null);
+    }
     sumChar = sumChar + amountNumbers;
     if (sumChar > numChar) {
       alert("El número de caracteres excede los " + numChar + " caracteres establecidos inicialmente.");
@@ -112,11 +147,19 @@ function generatePassword() {
       typeCharacter = 3;
       selectElements(typeCharacter);
       placeAvailable = numChar - sumChar;
+      if (placeAvailable === 0) {
+        stringTotal = refill();
+        return (stringTotal);
+      }
     }
   }
   var confirmaEsp = confirm("¿Deseas que contenga caracteres especiales? ");
   if (confirmaEsp) {
     numSpecialChar = parseInt(prompt("¿Cuántos caracteres especiales deseas que contenga la contraseña? Tienes " + placeAvailable + " espacios disponibles"));
+    if (Number(numSpecialChar) != numSpecialChar) {
+      alert("Número invalido !!! ");
+      return (null);
+    }
     sumChar = sumChar + numSpecialChar;
     if (sumChar > numChar) {
       alert("El número de caracteres excede los " + numChar + " caracteres establecidos inicialmente.");
@@ -125,10 +168,21 @@ function generatePassword() {
       typeCharacter =4;
       selectElements(typeCharacter);
       placeAvailable = numChar - sumChar;
+      if (placeAvailable > 0) {
+        alert("Datos incompletos !!!  Por lo tanto se genera contraseña sugerida");
+        stringTotal = suggestedPassword();
+        return (stringTotal); 
+      } else {
+        stringTotal = refill();
+        return (stringTotal);
+      }
     }
+  } else {
+    alert("Datos incompletos !!!  Por lo tanto se genera contraseña sugerida");
+    stringTotal = suggestedPassword();
+    return (stringTotal); 
   }
-  stringTotal = refill();
-  return (stringTotal);
+  
 }
 
 
