@@ -3,7 +3,7 @@
 *::after {
   box-sizing: border-box;
 }
-
+/* Se establece formato a html y body */
 html,
 body,
 .wrapper {
@@ -13,10 +13,10 @@ body,
 }
 
 body {
-  font-family: sans-serif;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   background-color: #f9fbfd;
 }
-
+/* se establece formato a recuadro principal */
 .wrapper {
   padding-top: 30px;
   padding-left: 20px;
@@ -29,9 +29,9 @@ header {
   padding-top: 0px;
   color: hsl(206, 17%, 28%);
 }
-
+/* Se establece formato a main, recuadro principal */
 main {
-  background-color: hsl(0, 0%, 100%);
+  background-color: hsl(210, 36%, 96%);
   border-radius: 5px;
   border-width: 1px;
   box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px 0px;
@@ -71,10 +71,10 @@ main {
   display: block;
   clear: both;
 }
-
+/* Se establece formato al boton generador */
 .btn {
   border: none;
-  background-color: hsl(360, 91%, 36%);
+  background-color: rgb(182, 55, 55);
   border-radius: 25px;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 6px 0px rgba(0, 0, 0, 0.2) 0px 1px 1px 0px;
   color: hsl(0, 0%, 100%);
@@ -95,7 +95,7 @@ button[disabled] {
 .float-right {
   float: right;
 }
-
+/* Se da formato en area de despliegue de password */
 #password {
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -116,7 +116,7 @@ button[disabled] {
   resize: none;
   overflow: hidden;
 }
-
+/* Se establecen media query para hacerlo responsivo */
 @media (max-width: 690px) {
   .btn {
     font-size: 1rem;
